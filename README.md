@@ -138,6 +138,12 @@ git clone https://github.com/msracver/Flow-Guided-Feature-Aggregation.git
 	```
 2. Run
 	```
+	sudo pip install pyyaml
+	sudo pip install easydict
+	sudo pip install Pillow
+	sudo pip install dill
+	sudo pip install opencv-python==3.2.0.6
+	
 	python ./fgfa_rfcn/demo.py
 	```
 
