@@ -105,6 +105,8 @@ git clone https://github.com/msracver/Flow-Guided-Feature-Aggregation.git
 	cd incubator-mxnet
 	git checkout v0.10.0
 	git submodule update
+
+	git clone --recursive -b v0.10.0 https://github.com/apache/incubator-mxnet
 	```
 	3.2 Copy operators in `$(FGFA_ROOT)/fgfa_rfcn/operator_cxx` to `$(YOUR_MXNET_FOLDER)/src/operator/contrib` by
 	```
