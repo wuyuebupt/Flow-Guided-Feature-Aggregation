@@ -241,16 +241,6 @@ class ImageNetVID(IMDB):
         path = os.path.join(res_file_folder, filename)
         return path
 
-    # def get_result_file_template_seqnms(self, gpu_id):
-    #     """
-    #     :return: a string template
-    #     """
-    #     res_file_folder = os.path.join(self.result_path, 'results')
-    #     filename = 'det_' + self.image_set + str(gpu_id) + '_{:s}.txt'
-    #     path = os.path.join(res_file_folder, filename)
-    #     return path
-
-
     def get_result_file_template(self, gpu_id):
         """
         :return: a string template
@@ -498,8 +488,10 @@ class ImageNetVID(IMDB):
             motion_ranges = [[0.0, 1.0]]
             area_ranges = [[0, 1e5 * 1e5]]
 
+        # ap = vid_eval_motion(multifiles, filenames, annopath, imageset_file, self.classes_map, annocache, self.motion_iou_path,
+        #                      motion_ranges, area_ranges, ovthresh=0.5)
         ap = vid_eval_motion(multifiles, filenames, annopath, imageset_file, self.classes_map, annocache, self.motion_iou_path,
-                             motion_ranges, area_ranges, ovthresh=0.5)
+                             motion_ranges, area_ranges, ovthresh=0.7)
 
         for motion_index, motion_range in enumerate(motion_ranges):
             for area_index, area_range in enumerate(area_ranges):

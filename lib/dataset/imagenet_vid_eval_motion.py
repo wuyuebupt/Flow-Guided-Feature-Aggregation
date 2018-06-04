@@ -76,7 +76,7 @@ def vid_eval_motion(multifiles, detpath, annopath, imageset_file, classname_map,
     :param annopath: annotations annopath.format(classname)
     :param imageset_file: text file containing list of images
     :param annocache: caching annotations
-    :param ovthresh: overlap threshold
+    :param ovthresh: overlap threshold -> actually not used in the original code
     :return: rec, prec, ap
     """
 
@@ -86,11 +86,15 @@ def vid_eval_motion(multifiles, detpath, annopath, imageset_file, classname_map,
     gt_img_ids = [int(x[1]) for x in lines]
     classhash = dict(zip(classname_map, range(0,len(classname_map))))
 
-   # load annotations from cache
+    # load annotations from cache
+    # remove old cache due to have to 
+    if os.path.isfile(annocache):
+        os.remove(annocache)
     if not os.path.isfile(annocache):
         recs = []
         for ind, image_filename in enumerate(img_basenames):
-            recs.append(parse_vid_rec(annopath.format('VID/' + image_filename), classhash, gt_img_ids[ind]))
+            # recs.append(parse_vid_rec(annopath.format('VID/' + image_filename), classhash, gt_img_ids[ind]))
+            recs.append(parse_vid_rec(annopath.format('VID/' + image_filename), classhash, gt_img_ids[ind], ovthresh))
             if ind % 100 == 0:
                 print 'reading annotations for {:d}/{:d}'.format(ind + 1, len(img_basenames))
         print 'saving annotations cache to {:s}'.format(annocache)
