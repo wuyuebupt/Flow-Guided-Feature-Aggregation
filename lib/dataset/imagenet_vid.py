@@ -241,6 +241,15 @@ class ImageNetVID(IMDB):
         path = os.path.join(res_file_folder, filename)
         return path
 
+    # def get_result_file_template_seqnms(self, gpu_id):
+    #     """
+    #     :return: a string template
+    #     """
+    #     res_file_folder = os.path.join(self.result_path, 'results')
+    #     filename = 'det_' + self.image_set + str(gpu_id) + '_{:s}.txt'
+    #     path = os.path.join(res_file_folder, filename)
+    #     return path
+
 
     def get_result_file_template(self, gpu_id):
         """
@@ -472,7 +481,8 @@ class ImageNetVID(IMDB):
         if gpu_number != None:
             filenames = []
             for i in range(gpu_number):
-                filename = self.get_result_file_template(i).format('all')
+                # filename = self.get_result_file_template(i).format('all')
+                filename = self.get_result_file_template_seqnms(i).format('all')
                 filenames.append(filename)
             multifiles = True  # contains multi cache results of all boxes
         else:
